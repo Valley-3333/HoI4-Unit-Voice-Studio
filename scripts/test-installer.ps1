@@ -9,7 +9,7 @@ if (Test-Path -LiteralPath $TestRoot) { throw 'Use a fresh test directory.' }
 New-Item -ItemType Directory -Path $TestRoot | Out-Null
 $installRoot = Join-Path $TestRoot 'インストール先 with spaces'
 $userRoot = Join-Path $TestRoot 'OneDrive - テスト/ドキュメント/Paradox Interactive/Hearts of Iron IV'
-$installerPath = Join-Path $repoRoot 'dist/UnitVoiceStudio-Setup-1.0.0.exe'
+$installerPath = Join-Path $repoRoot 'dist/HoI4-Unit-Voice-Studio-Setup-1.0.0.exe'
 $results = [Collections.Generic.List[string]]::new()
 function Assert-Test([bool]$Condition,[string]$Label) { if (-not $Condition) { throw "FAIL: $Label" }; $results.Add("PASS: $Label") }
 function Install-Test {
@@ -21,6 +21,7 @@ $appPath = Join-Path $installRoot 'HOI4VoiceStudio.exe'
 Assert-Test (Test-Path -LiteralPath $appPath) 'Installer extracts the actual application'
 Assert-Test ((Get-Item -LiteralPath $appPath).VersionInfo.FileVersion -eq '1.0.0.0') 'Installed executable reports version 1.0.0'
 Assert-Test ((Get-Item -LiteralPath $appPath).VersionInfo.CompanyName -eq 'Valley') 'Installed executable identifies Valley'
+Assert-Test ((Get-Item -LiteralPath $appPath).VersionInfo.ProductName -eq 'HoI4 Unit Voice Studio') 'Installed executable uses full product name'
 foreach ($relativeFile in @('配布案内.txt','THIRD_PARTY_NOTICES.txt','licenses/NSIS-COPYING.txt')) {
     Assert-Test (Test-Path -LiteralPath (Join-Path $installRoot $relativeFile)) ("Installer includes " + $relativeFile)
 }
@@ -41,10 +42,10 @@ $keepPath = Join-Path $installRoot 'data/takes/keep.wav'
 Copy-Item -LiteralPath $keepPath -Destination (Join-Path $installRoot 'UnitVoiceMod/sound/keep.wav')
 Set-Content -LiteralPath (Join-Path $installRoot 'data/replacements.json') -Value '[]' -Encoding utf8
 @{ UserDataPath=$userRoot; UserDataManual=$true; InitialSetupComplete=$true } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $installRoot 'data/setup.json') -Encoding utf8
-Set-Content -LiteralPath (Join-Path $installRoot 'UnitVoiceMod/descriptor.mod') -Value 'name="Unit Voice Studio"' -Encoding utf8
+Set-Content -LiteralPath (Join-Path $installRoot 'UnitVoiceMod/descriptor.mod') -Value 'name="HoI4 Unit Voice Studio"' -Encoding utf8
 $descriptorPath = Join-Path $userRoot 'mod/UnitVoiceStudio.mod'
 $modPath = (Join-Path $installRoot 'UnitVoiceMod').Replace('\','/')
-[IO.File]::WriteAllText($descriptorPath,('name="Unit Voice Studio"' + "`n" + 'path="' + $modPath + '"'),[Text.UTF8Encoding]::new($false))
+[IO.File]::WriteAllText($descriptorPath,('name="HoI4 Unit Voice Studio"' + "`n" + 'path="' + $modPath + '"'),[Text.UTF8Encoding]::new($false))
 $neighborPath = Join-Path $userRoot 'mod/OtherMod.mod'
 Set-Content -LiteralPath $neighborPath -Value 'name="Keep Other Mod"'
 $otherNoticePath = Join-Path $installRoot 'licenses/keep-user-file.txt'

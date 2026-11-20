@@ -28,13 +28,13 @@ namespace UnitVoiceStudio {
         VoiceEvent SelectedEvent {get{return usage.SelectedItem as VoiceEvent;}}
         Clip SelectedClip {get{return clip.SelectedItem as Clip;}}
         public MainForm() {
-            Text="HOI4 Unit Voice Studio — ユニット音声レコーダー";
+            Text="HoI4 Unit Voice Studio — ユニット音声レコーダー";
             Font=new Font("Yu Gothic UI",10);AutoScaleMode=AutoScaleMode.Dpi;
             ClientSize=new Size(1050,790);MinimumSize=new Size(950,810);StartPosition=FormStartPosition.CenterScreen;
             BackColor=Color.FromArgb(241,244,248);
             var layout=new TableLayoutPanel{Dock=DockStyle.Fill,Padding=new Padding(24),ColumnCount=1,RowCount=7};
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute,74));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,80));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,172));layout.RowStyles.Add(new RowStyle(SizeType.Percent,100));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,44));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,134));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,48));Controls.Add(layout);
-            var title=new Label{Text="UNIT VOICE STUDIO\n国と用途を確認して、あなたの声をユニットへ。",Dock=DockStyle.Fill,Font=new Font("Yu Gothic UI",16,FontStyle.Bold),ForeColor=Color.FromArgb(26,44,67)};layout.Controls.Add(title);
+            var title=new Label{Text="HoI4 Unit Voice Studio\n国と用途を確認して、あなたの声をユニットへ。",Dock=DockStyle.Fill,Font=new Font("Yu Gothic UI",16,FontStyle.Bold),ForeColor=Color.FromArgb(26,44,67)};layout.Controls.Add(title);
             var tools=new FlowLayoutPanel{Dock=DockStyle.Fill,WrapContents=false};
             AddButton(tools,scan,"本体を選択・再読込",ScanGame,180);
             AddButton(tools,register,"導入・登録設定",Register,165);

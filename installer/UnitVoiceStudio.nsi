@@ -3,20 +3,20 @@ Unicode true
 !include "LogicLib.nsh"
 !include "FileFunc.nsh"
 
-Name "HOI4 Unit Voice Studio"
-OutFile "..\dist\UnitVoiceStudio-Setup-1.0.0.exe"
+Name "HoI4 Unit Voice Studio"
+OutFile "..\dist\HoI4-Unit-Voice-Studio-Setup-1.0.0.exe"
 InstallDir "$LOCALAPPDATA\Programs\UnitVoiceStudio"
 InstallDirRegKey HKCU "Software\UnitVoiceStudio" "InstallDir"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
 VIProductVersion "1.0.0.0"
-VIAddVersionKey "ProductName" "HOI4 Unit Voice Studio"
+VIAddVersionKey "ProductName" "HoI4 Unit Voice Studio"
 VIAddVersionKey "FileDescription" "ユニット音声レコーダー セットアップ"
 VIAddVersionKey "FileVersion" "1.0.0"
 VIAddVersionKey "ProductVersion" "1.0.0"
 VIAddVersionKey "LegalCopyright" "Valley"
 VIAddVersionKey "CompanyName" "Valley"
-BrandingText "Unit Voice Studio"
+BrandingText "HoI4 Unit Voice Studio"
 Var TestMode
 
 !define MUI_ABORTWARNING
@@ -25,8 +25,8 @@ Var TestMode
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
 !define MUI_FINISHPAGE_RUN "$INSTDIR\HOI4VoiceStudio.exe"
-!define MUI_FINISHPAGE_RUN_TEXT "Unit Voice Studioを起動し、Modの登録状態を確認する"
-!define MUI_FINISHPAGE_TEXT "アプリをインストールしました。$\r$\n$\r$\n起動後にModが登録されたら、HOI4ランチャーで Unit Voice Studio をプレイセットへ追加してください。"
+!define MUI_FINISHPAGE_RUN_TEXT "HoI4 Unit Voice Studioを起動し、Modの登録状態を確認する"
+!define MUI_FINISHPAGE_TEXT "アプリをインストールしました。$\r$\n$\r$\n起動後にModが登録されたら、HOI4ランチャーで HoI4 Unit Voice Studio をプレイセットへ追加してください。"
 !insertmacro MUI_PAGE_FINISH
 !define MUI_UNCONFIRMPAGE_TEXT_TOP "アプリと、この設置場所を参照するMod登録を削除します。$\r$\n録音履歴（data）とMod本体（UnitVoiceMod）は削除しません。"
 !insertmacro MUI_UNPAGE_CONFIRM
@@ -42,9 +42,12 @@ Function .onInit
     StrCpy $TestMode 1
   ${EndIf}
   ${If} $TestMode != 1
-    FindWindow $0 "" "HOI4 Unit Voice Studio — ユニット音声レコーダー"
+    FindWindow $0 "" "HoI4 Unit Voice Studio — ユニット音声レコーダー"
+    ${If} $0 == 0
+      FindWindow $0 "" "HOI4 Unit Voice Studio — ユニット音声レコーダー"
+    ${EndIf}
     ${If} $0 != 0
-      MessageBox MB_OK|MB_ICONINFORMATION "録音を保存し、起動中のUnit Voice Studioを閉じてからセットアップを実行してください。" /SD IDOK
+      MessageBox MB_OK|MB_ICONINFORMATION "録音を保存し、起動中のHoI4 Unit Voice Studioを閉じてからセットアップを実行してください。" /SD IDOK
       SetErrorLevel 3
       Abort
     ${EndIf}
@@ -81,8 +84,14 @@ Section "アプリ"
     FileOpen $0 "$INSTDIR\installer-testmode" w
     FileClose $0
   ${Else}
+    ReadRegStr $0 HKCU "Software\UnitVoiceStudio" "InstallDir"
+    ${If} $0 == $INSTDIR
+      Delete "$SMPROGRAMS\Unit Voice Studio\Unit Voice Studio.lnk"
+      Delete "$SMPROGRAMS\Unit Voice Studio\アンインストール.lnk"
+      RMDir "$SMPROGRAMS\Unit Voice Studio"
+    ${EndIf}
     WriteRegStr HKCU "Software\UnitVoiceStudio" "InstallDir" "$INSTDIR"
-    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "DisplayName" "HOI4 Unit Voice Studio"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "DisplayName" "HoI4 Unit Voice Studio"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "DisplayVersion" "1.0.0"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "Publisher" "Valley"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "InstallLocation" "$INSTDIR"
@@ -90,17 +99,20 @@ Section "アプリ"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "DisplayIcon" "$INSTDIR\HOI4VoiceStudio.exe"
     WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "NoModify" 1
     WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "NoRepair" 1
-    CreateDirectory "$SMPROGRAMS\Unit Voice Studio"
-    CreateShortCut "$SMPROGRAMS\Unit Voice Studio\Unit Voice Studio.lnk" "$INSTDIR\HOI4VoiceStudio.exe"
-    CreateShortCut "$SMPROGRAMS\Unit Voice Studio\アンインストール.lnk" "$INSTDIR\Uninstall.exe"
+    CreateDirectory "$SMPROGRAMS\HoI4 Unit Voice Studio"
+    CreateShortCut "$SMPROGRAMS\HoI4 Unit Voice Studio\HoI4 Unit Voice Studio.lnk" "$INSTDIR\HOI4VoiceStudio.exe"
+    CreateShortCut "$SMPROGRAMS\HoI4 Unit Voice Studio\アンインストール.lnk" "$INSTDIR\Uninstall.exe"
   ${EndIf}
 SectionEnd
 
 Function un.onInit
   IfFileExists "$INSTDIR\installer-testmode" done
-  FindWindow $0 "" "HOI4 Unit Voice Studio — ユニット音声レコーダー"
+  FindWindow $0 "" "HoI4 Unit Voice Studio — ユニット音声レコーダー"
+  ${If} $0 == 0
+    FindWindow $0 "" "HOI4 Unit Voice Studio — ユニット音声レコーダー"
+  ${EndIf}
   ${If} $0 != 0
-    MessageBox MB_OK|MB_ICONINFORMATION "録音を保存し、Unit Voice Studioを閉じてからアンインストールしてください。" /SD IDOK
+    MessageBox MB_OK|MB_ICONINFORMATION "録音を保存し、HoI4 Unit Voice Studioを閉じてからアンインストールしてください。" /SD IDOK
     SetErrorLevel 3
     Abort
   ${EndIf}
@@ -121,6 +133,9 @@ Section "Uninstall"
   ${If} $0 == $INSTDIR
     DeleteRegKey HKCU "Software\UnitVoiceStudio"
     DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio"
+    Delete "$SMPROGRAMS\HoI4 Unit Voice Studio\HoI4 Unit Voice Studio.lnk"
+    Delete "$SMPROGRAMS\HoI4 Unit Voice Studio\アンインストール.lnk"
+    RMDir "$SMPROGRAMS\HoI4 Unit Voice Studio"
     Delete "$SMPROGRAMS\Unit Voice Studio\Unit Voice Studio.lnk"
     Delete "$SMPROGRAMS\Unit Voice Studio\アンインストール.lnk"
     RMDir "$SMPROGRAMS\Unit Voice Studio"

@@ -1,6 +1,6 @@
 using System.Reflection;
-[assembly: AssemblyTitle("HOI4 Unit Voice Studio")]
-[assembly: AssemblyProduct("HOI4 Unit Voice Studio")]
+[assembly: AssemblyTitle("HoI4 Unit Voice Studio")]
+[assembly: AssemblyProduct("HoI4 Unit Voice Studio")]
 [assembly: AssemblyCompany("Valley")]
 [assembly: AssemblyCopyright("Valley")]
 [assembly: AssemblyVersion("1.0.0.0")]

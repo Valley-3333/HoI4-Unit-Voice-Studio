@@ -18,7 +18,7 @@ namespace UnitVoiceStudio {
             ClientSize=new Size(860,510);MinimumSize=new Size(820,540);StartPosition=FormStartPosition.CenterParent;
             var layout=new TableLayoutPanel{Dock=DockStyle.Fill,Padding=new Padding(20),ColumnCount=1,RowCount=9};Controls.Add(layout);
             foreach(int height in new[]{56,26,42,26,42,36,66,52})layout.RowStyles.Add(new RowStyle(SizeType.Absolute,height));layout.RowStyles.Add(new RowStyle(SizeType.Percent,100));
-            layout.Controls.Add(new Label{Text="Modの登録ファイルはアプリが配置します。\n登録後は、ランチャーで Unit Voice Studio をプレイセットに追加してください。",Dock=DockStyle.Fill});
+            layout.Controls.Add(new Label{Text="Modの登録ファイルはアプリが配置します。\n登録後は、ランチャーで HoI4 Unit Voice Studio をプレイセットに追加してください。",Dock=DockStyle.Fill});
             layout.Controls.Add(new Label{Text="HOI4本体の場所",Dock=DockStyle.Fill});
             layout.Controls.Add(PathRow(game,"本体を選択",delegate{
                 using(var d=new FolderBrowserDialog{Description="hoi4.exe と sound のあるフォルダー",SelectedPath=game.Text})if(d.ShowDialog(this)==DialogResult.OK){if(!GameLocator.IsGame(d.SelectedPath))throw new InvalidDataException("hoi4.exe と sound のある本体フォルダーを選択してください。");game.Text=d.SelectedPath;Detect();}
@@ -30,7 +30,7 @@ namespace UnitVoiceStudio {
             }));
             result.Dock=DockStyle.Fill;result.AutoEllipsis=true;result.Padding=new Padding(0,8,0,0);layout.Controls.Add(result);
             var actions=new FlowLayoutPanel{Dock=DockStyle.Fill,WrapContents=false};
-            Button(actions,"登録・修復",delegate{apply(game.Text,destination.Text,manual);ShowStatus();MessageBox.Show(this,"登録を確認しました。ランチャーを再起動し、Unit Voice Studio をプレイセットへ追加してください。","登録完了",MessageBoxButtons.OK,MessageBoxIcon.Information);DialogResult=DialogResult.OK;Close();},145);
+            Button(actions,"登録・修復",delegate{apply(game.Text,destination.Text,manual);ShowStatus();MessageBox.Show(this,"登録を確認しました。ランチャーを再起動し、HoI4 Unit Voice Studio をプレイセットへ追加してください。","登録完了",MessageBoxButtons.OK,MessageBoxIcon.Information);DialogResult=DialogResult.OK;Close();},145);
             Button(actions,"再検出",Detect,115);
             Button(actions,"旧版の録音を引き継ぐ",delegate{if(!GameLocator.IsGame(game.Text))throw new InvalidDataException("先に本体を選択してください。");using(var d=new FolderBrowserDialog{Description="旧版のexeとdataフォルダーが入ったフォルダー"})if(d.ShowDialog(this)==DialogResult.OK){import(d.SelectedPath);result.Text="録音の履歴と割り当てを引き継ぎました。元のフォルダーも残しています。";}},220);
             Button(actions,"閉じる",Close,100);layout.Controls.Add(actions);

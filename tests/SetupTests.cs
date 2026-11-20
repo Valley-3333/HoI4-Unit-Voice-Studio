@@ -40,8 +40,14 @@ namespace UnitVoiceStudio {
             Registration.Register(projectRoot,redirectedGame,false);
             check(Registration.Status(projectRoot,redirectedGame).StartsWith("登録済み"),"Automatic registration verifies Mod path");
             string descriptor=Registration.Target(redirectedGame);string modDir=Path.GetDirectoryName(descriptor);
+            check(File.ReadAllText(descriptor).Contains("name=\"HoI4 Unit Voice Studio\"")&&File.ReadAllText(Paths.Inside(projectRoot,"UnitVoiceMod/descriptor.mod")).Contains("name=\"HoI4 Unit Voice Studio\""),"Launcher registration and Mod descriptor use full product name");
             Registration.Register(projectRoot,redirectedGame,false);
             check(Directory.GetFiles(modDir,"*.backup-*").Length==0,"Repeated registration is idempotent");
+            byte[] legacy=Encoding.UTF8.GetBytes(File.ReadAllText(descriptor).Replace("name=\"HoI4 Unit Voice Studio\"","name=\"Unit Voice Studio\""));
+            Atomic.Write(descriptor,legacy);
+            check(Registration.Status(projectRoot,redirectedGame).StartsWith("登録済み"),"Legacy product name remains recognized");
+            Registration.Register(projectRoot,redirectedGame,false);
+            check(File.ReadAllText(descriptor).Contains("name=\"HoI4 Unit Voice Studio\"")&&Directory.GetFiles(modDir,"*.backup-*").Any(p=>File.ReadAllBytes(p).SequenceEqual(legacy)),"Legacy registration upgrades to full name with a backup");
             string other=Paths.Inside(root,"Other copy/UnitVoiceMod");Atomic.Write(descriptor,Encoding.UTF8.GetBytes(Registration.Descriptor(other,"1.20.*")));
             byte[] old=File.ReadAllBytes(descriptor);
             reject(()=>Registration.Register(projectRoot,redirectedGame,false),"Automatic registration protects another installed copy");
@@ -52,6 +58,8 @@ namespace UnitVoiceStudio {
             check(File.Exists(descriptor),"Missing registration repairs automatically");
             string neighbor=Paths.Inside(redirectedGame,"mod/OtherMod.mod");Atomic.Write(neighbor,Encoding.UTF8.GetBytes("other mod"));
             check(Registration.Unregister(projectRoot,redirectedGame)&&!File.Exists(descriptor)&&File.Exists(neighbor),"Unregister removes only its own descriptor");
+            Atomic.Write(descriptor,legacy);
+            check(Registration.Unregister(projectRoot,redirectedGame)&&!File.Exists(descriptor)&&File.Exists(neighbor),"Unregister also recognizes legacy product name");
             Atomic.Write(descriptor,old);
             check(!Registration.Unregister(projectRoot,redirectedGame)&&File.ReadAllBytes(descriptor).SequenceEqual(old),"Unregister preserves descriptor referencing another copy");
             reject(()=>Registration.Register(projectRoot,missing,true),"Registration refuses an unverified destination");

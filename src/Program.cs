@@ -27,13 +27,13 @@ namespace UnitVoiceStudio {
                 }
                 bool first;
                 using(var instance=new Mutex(true,"Local\\HOI4UnitVoiceStudio_"+StablePathHash(AppDomain.CurrentDomain.BaseDirectory),out first)) {
-                    if(!first){MessageBox.Show("このフォルダーのUnit Voice Studioはすでに起動しています。","Unit Voice Studio");return 0;}
+                    if(!first){MessageBox.Show("このフォルダーのHoI4 Unit Voice Studioはすでに起動しています。","HoI4 Unit Voice Studio");return 0;}
                     Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new MainForm());return 0;
                 }
             } catch(Exception e) {
                 if(args.Length>0) { string log=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"command-error.txt");File.WriteAllText(log,e.ToString(),Encoding.UTF8);return 1; }
-                MessageBox.Show(e.Message,"Unit Voice Studio",MessageBoxButtons.OK,MessageBoxIcon.Error);return 1;
+                MessageBox.Show(e.Message,"HoI4 Unit Voice Studio",MessageBoxButtons.OK,MessageBoxIcon.Error);return 1;
             }
         }
         static string StablePathHash(string path) {

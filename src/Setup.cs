@@ -96,12 +96,12 @@ namespace UnitVoiceStudio {
         public static string Target(string userData){return Paths.Inside(userData,"mod/UnitVoiceStudio.mod");}
         public static string Descriptor(string modRoot,string version) {
             if(modRoot.IndexOfAny(new[]{'"','\r','\n'})>=0)throw new InvalidDataException("保存先の文字をMod登録ファイルで扱えません。");
-            return "# UnitVoiceStudio managed registration\nname=\"Unit Voice Studio\"\npath=\""+System.IO.Path.GetFullPath(modRoot).Replace('\\','/')+"\"\nsupported_version=\""+version+"\"\ntags={\"Sound\"}\n";
+            return "# UnitVoiceStudio managed registration\nname=\"HoI4 Unit Voice Studio\"\npath=\""+System.IO.Path.GetFullPath(modRoot).Replace('\\','/')+"\"\nsupported_version=\""+version+"\"\ntags={\"Sound\"}\n";
         }
         static string ReferencedPath(string file) {
             var nodes=Clausewitz.Parse(File.ReadAllText(file));var n=nodes.FirstOrDefault(x=>x.Key=="path");return n==null?null:n.Value;
         }
-        static bool OwnName(string file){return Clausewitz.Parse(File.ReadAllText(file)).Any(x=>x.Key=="name"&&x.Value=="Unit Voice Studio");}
+        static bool OwnName(string file){return Clausewitz.Parse(File.ReadAllText(file)).Any(x=>x.Key=="name"&&(x.Value=="HoI4 Unit Voice Studio"||x.Value=="Unit Voice Studio"));}
         public static string Status(string root,string userData) {
             if(!UserDataLocator.IsUserData(userData))return "保存先を確認できません。HOI4を一度起動するか、導入設定で保存先を選んでください。";
             string file=Target(userData);if(!File.Exists(file))return "未登録 — 自動登録または修復が必要です。";

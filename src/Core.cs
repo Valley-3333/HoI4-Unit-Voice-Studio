@@ -183,11 +183,11 @@ namespace UnitVoiceStudio {
                 if(sources.Count!=1) throw new InvalidDataException("同名の音声定義が複数あります: "+item.Key);
                 string text=sources[0].Text;
                 foreach(var edit in item.Value.OrderByDescending(x=>x.Item1)) text=text.Substring(0,edit.Item1)+edit.Item3+text.Substring(edit.Item2);
-                text+="\n# Unit Voice Studio recordings\n"+additions[item.Key];
+                text+="\n# HoI4 Unit Voice Studio recordings\n"+additions[item.Key];
                 Clausewitz.Parse(text);
                 files[item.Key]=new UTF8Encoding(false).GetBytes(text);
             }
-            string descriptor="name=\"Unit Voice Studio\"\nversion=\"1.0.0\"\nsupported_version=\""+Catalog.Version+"\"\ntags={\"Sound\"}\n";
+            string descriptor="name=\"HoI4 Unit Voice Studio\"\nversion=\"1.0.0\"\nsupported_version=\""+Catalog.Version+"\"\ntags={\"Sound\"}\n";
             files["descriptor.mod"]=Encoding.UTF8.GetBytes(descriptor);
             return files;
         }

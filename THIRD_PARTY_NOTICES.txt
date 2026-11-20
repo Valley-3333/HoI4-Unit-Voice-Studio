@@ -1,4 +1,4 @@
-HOI4 Unit Voice Studio — 第三者ソフトウェアと権利について
+HoI4 Unit Voice Studio — 第三者ソフトウェアと権利について
 作者表記：Valley
 
 ■ NSIS 3.13

@@ -12,7 +12,7 @@ HOI4のユニット音声を、自分で録音した声に置き換えるWindows
 
 1. [Releases](https://github.com/Valley-3333/HoI4-Unit-Voice-Studio/releases)からインストーラをダウンロードして実行します。
 2. アプリを起動します。本体とModの登録先は自動で検出します。
-3. HOI4ランチャーで「Unit Voice Studio」をプレイセットに追加します。
+3. HOI4ランチャーで「HoI4 Unit Voice Studio」をプレイセットに追加します。
 
 ## 使い方
 

@@ -21,7 +21,7 @@ Windowsの.NET Framework C#コンパイラを使います。追加パッケー�
 ```
 
 NSISが別の場所にある場合は `-CompilerPath "C:\path\to\makensis.exe"` を指定します。
-出力先は `dist/UnitVoiceStudio-Setup-1.0.0.exe` です。
+出力先は `dist/HoI4-Unit-Voice-Studio-Setup-1.0.0.exe` です。
 同梱するのはアプリ・操作説明・配布案内・第三者ライセンス表示です。
 
 ## 検証する
