@@ -1,0 +1,14 @@
+HoI4 Unit Voice Studio 1.1.1 テスト版
+作者：Valley／HOI4向け非公式ツール
+
+国・用途ごとに、ユニット音声を自分で録音した声へ差し替えるWindowsアプリです。
+動作条件：Windows 10/11、.NET Framework 4.8以上、インストール済みのHOI4、マイク。
+
+配布： https://github.com/Valley-3333/HoI4-Unit-Voice-Studio/releases
+不具合報告： https://github.com/Valley-3333/HoI4-Unit-Voice-Studio/issues
+導入・操作方法は同梱の「使い方.txt」を参照してください。
+
+現在の配布物は未署名です。Windowsの警告が出る場合は、配布元とSHA-256値を確認してください。
+録音はPCに保存し、本アプリから自動送信しません。
+ゲーム音声や個人の録音をインストーラに含めていません。
+ゲーム素材・生成ModにはHOI4側の規約、第三者ソフトウェアには各ライセンスが適用されます。

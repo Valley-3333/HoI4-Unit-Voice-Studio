@@ -1,0 +1,29 @@
+HOI4 Unit Voice Studio — 第三者ソフトウェアと権利について
+作者表記：Valley
+
+■ NSIS 3.13
+インストーラとアンインストーラの作成に、改変していないNSIS 3.13を使用しています。
+Copyright (C) 1999-2026 Contributors
+圧縮方式：LZMA
+
+NSIS本体は原則としてzlib/libpngライセンス、LZMA圧縮モジュールは
+Common Public License 1.0および同モジュールのリンクに関する特別例外に従います。
+同梱の licenses/NSIS-COPYING.txt に、NSIS配布物の通知・条件を改変せず収録しています。
+独自利用条件への同意画面は設けていませんが、NSIS各部品のライセンスは引き続き適用されます。
+
+プロジェクト： https://nsis.sourceforge.io/
+ライセンス： https://nsis.sourceforge.io/License
+使用したバージョンのソースコード：
+https://sourceforge.net/projects/nsis/files/NSIS%203/3.13/nsis-3.13-src.tar.bz2/download
+
+■ Windows / .NET Framework
+本アプリは、利用者の環境にあるWindowsの音声機能と.NET Framework 4.8以上を使用します。
+Windowsや.NET Frameworkのランタイムを本インストーラに同梱していません。
+
+■ HOI4 / Paradox Interactive
+本アプリは非公式のコミュニティ製ツールです。
+HOI4およびゲーム由来のデータの権利は各権利者に帰属します。
+本アプリの配布は、ゲーム本体、DLC、元音声を再配布する許諾を意味しません。
+インストーラにゲーム音声は含まれず、各利用者のインストール済みゲームから参照します。
+HOI4の利用契約案内： https://store.steampowered.com/eula/394360_eula_0
+Paradox User Agreement： https://legal.paradoxplaza.com/eula?locale=en
