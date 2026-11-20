@@ -9,7 +9,7 @@ if (Test-Path -LiteralPath $TestRoot) { throw 'Use a fresh test directory.' }
 New-Item -ItemType Directory -Path $TestRoot | Out-Null
 $installRoot = Join-Path $TestRoot 'インストール先 with spaces'
 $userRoot = Join-Path $TestRoot 'OneDrive - テスト/ドキュメント/Paradox Interactive/Hearts of Iron IV'
-$installerPath = Join-Path $repoRoot 'dist/UnitVoiceStudio-Setup-1.1.1.exe'
+$installerPath = Join-Path $repoRoot 'dist/UnitVoiceStudio-Setup-1.0.0.exe'
 $results = [Collections.Generic.List[string]]::new()
 function Assert-Test([bool]$Condition,[string]$Label) { if (-not $Condition) { throw "FAIL: $Label" }; $results.Add("PASS: $Label") }
 function Install-Test {
@@ -19,7 +19,7 @@ function Install-Test {
 Install-Test
 $appPath = Join-Path $installRoot 'HOI4VoiceStudio.exe'
 Assert-Test (Test-Path -LiteralPath $appPath) 'Installer extracts the actual application'
-Assert-Test ((Get-Item -LiteralPath $appPath).VersionInfo.FileVersion -eq '1.1.1.0') 'Installed executable reports version 1.1.1'
+Assert-Test ((Get-Item -LiteralPath $appPath).VersionInfo.FileVersion -eq '1.0.0.0') 'Installed executable reports version 1.0.0'
 Assert-Test ((Get-Item -LiteralPath $appPath).VersionInfo.CompanyName -eq 'Valley') 'Installed executable identifies Valley'
 foreach ($relativeFile in @('配布案内.txt','THIRD_PARTY_NOTICES.txt','licenses/NSIS-COPYING.txt')) {
     Assert-Test (Test-Path -LiteralPath (Join-Path $installRoot $relativeFile)) ("Installer includes " + $relativeFile)

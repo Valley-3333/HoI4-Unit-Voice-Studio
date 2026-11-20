@@ -4,16 +4,16 @@ Unicode true
 !include "FileFunc.nsh"
 
 Name "HOI4 Unit Voice Studio"
-OutFile "..\dist\UnitVoiceStudio-Setup-1.1.1.exe"
+OutFile "..\dist\UnitVoiceStudio-Setup-1.0.0.exe"
 InstallDir "$LOCALAPPDATA\Programs\UnitVoiceStudio"
 InstallDirRegKey HKCU "Software\UnitVoiceStudio" "InstallDir"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
-VIProductVersion "1.1.1.0"
+VIProductVersion "1.0.0.0"
 VIAddVersionKey "ProductName" "HOI4 Unit Voice Studio"
 VIAddVersionKey "FileDescription" "ユニット音声レコーダー セットアップ"
-VIAddVersionKey "FileVersion" "1.1.1"
-VIAddVersionKey "ProductVersion" "1.1.1"
+VIAddVersionKey "FileVersion" "1.0.0"
+VIAddVersionKey "ProductVersion" "1.0.0"
 VIAddVersionKey "LegalCopyright" "Valley"
 VIAddVersionKey "CompanyName" "Valley"
 BrandingText "Unit Voice Studio"
@@ -83,7 +83,7 @@ Section "アプリ"
   ${Else}
     WriteRegStr HKCU "Software\UnitVoiceStudio" "InstallDir" "$INSTDIR"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "DisplayName" "HOI4 Unit Voice Studio"
-    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "DisplayVersion" "1.1.1"
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "DisplayVersion" "1.0.0"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "Publisher" "Valley"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "InstallLocation" "$INSTDIR"
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\UnitVoiceStudio" "UninstallString" '$\"$INSTDIR\Uninstall.exe$\"'

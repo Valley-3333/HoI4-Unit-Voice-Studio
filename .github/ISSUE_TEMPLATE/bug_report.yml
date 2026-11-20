@@ -11,7 +11,7 @@ body:
     id: app_version
     attributes:
       label: Unit Voice Studioのバージョン
-      placeholder: 例：1.1.1
+      placeholder: 例：1.0.0
     validations:
       required: true
   - type: dropdown

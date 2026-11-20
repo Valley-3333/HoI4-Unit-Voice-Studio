@@ -1,4 +1,4 @@
-HoI4 Unit Voice Studio 1.1.1 テスト版
+HoI4 Unit Voice Studio 1.0.0
 作者：Valley／HOI4向け非公式ツール
 
 国・用途ごとに、ユニット音声を自分で録音した声へ差し替えるWindowsアプリです。

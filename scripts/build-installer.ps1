@@ -11,7 +11,7 @@ Copy-Item -LiteralPath (Join-Path $repoRoot 'distribution/配布案内.txt') -De
 Copy-Item -LiteralPath (Join-Path $repoRoot 'THIRD_PARTY_NOTICES.txt') -Destination $payloadDir -Force
 New-Item -ItemType Directory -Force (Join-Path $payloadDir 'licenses') | Out-Null
 Copy-Item -LiteralPath (Join-Path $repoRoot 'licenses/NSIS-COPYING.txt') -Destination (Join-Path $payloadDir 'licenses') -Force
-Set-Content -LiteralPath (Join-Path $payloadDir 'installed.flag') -Value 'Unit Voice Studio 1.1.1' -Encoding ascii
+Set-Content -LiteralPath (Join-Path $payloadDir 'installed.flag') -Value 'Unit Voice Studio 1.0.0' -Encoding ascii
 & $CompilerPath /INPUTCHARSET UTF8 /V2 (Join-Path $repoRoot 'installer/UnitVoiceStudio.nsi')
 if ($LASTEXITCODE -ne 0) { throw 'Installer build failed.' }
-Get-Item -LiteralPath (Join-Path $repoRoot 'dist/UnitVoiceStudio-Setup-1.1.1.exe') | Select-Object FullName,Length
+Get-Item -LiteralPath (Join-Path $repoRoot 'dist/UnitVoiceStudio-Setup-1.0.0.exe') | Select-Object FullName,Length
