@@ -1,0 +1,84 @@
+name: 不具合報告
+description: 導入・登録・試聴・録音・Mod反映の問題を報告します。
+title: "[不具合] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        録音音声やdataフォルダー全体の添付は不要です。
+        この報告は公開されます。ユーザー名など、公開したくない情報は伏せてください。
+  - type: input
+    id: app_version
+    attributes:
+      label: Unit Voice Studioのバージョン
+      placeholder: 例：1.1.1
+    validations:
+      required: true
+  - type: dropdown
+    id: windows
+    attributes:
+      label: Windows
+      options:
+        - Windows 11
+        - Windows 10
+        - その他
+    validations:
+      required: true
+  - type: input
+    id: game_version
+    attributes:
+      label: HOI4のバージョン
+      placeholder: 不明の場合は「不明」
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: 問題が起きる操作
+      options:
+        - インストール・更新・アンインストール
+        - 起動・本体の検出
+        - 保存先の検出・Mod登録・修復
+        - 元音声・録音の試聴
+        - 録音・停止
+        - Modへの反映・復元
+        - 旧版からの引き継ぎ
+        - HOI4内での音声再生
+        - その他
+    validations:
+      required: true
+  - type: input
+    id: country_usage
+    attributes:
+      label: 対象の国・用途・音声候補
+      placeholder: 例：日本 / 移動・進軍命令 / jp_Positive_010
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      description: 何を選び、どのボタンを押したかを書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 実際の動作とエラー表示
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待した動作
+  - type: dropdown
+    id: documents
+    attributes:
+      label: HOI4の保存先
+      options:
+        - 通常のドキュメント
+        - OneDriveのドキュメント
+        - 別の保存先
+        - 不明
+  - type: textarea
+    id: other_mods
+    attributes:
+      label: 使用している他の音声Mod・補足

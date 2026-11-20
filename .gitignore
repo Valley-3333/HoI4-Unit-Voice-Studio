@@ -1,0 +1,11 @@
+# Generated application data may contain game assets, recordings and personal paths.
+/HOI4VoiceStudio/*
+!/HOI4VoiceStudio/使い方.txt
+/HOI4VoiceStudio.zip
+/dist/
+/tools/
+/tests/run-*/
+/tests/*.exe
+/tests/command-error.txt
+/tests/original-audio-formats.csv
+*.tmp-*
