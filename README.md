@@ -6,6 +6,8 @@ HOI4のユニット音声を、自分で録音した声に置き換えるWindows
 
 動作条件：Windows 10/11、.NET Framework 4.8以上、インストール済みのHOI4、マイク
 
+- 本アプリケーションはChatGPT,Codexを利用して作成しています
+
 ## 導入
 
 1. [Releases](https://github.com/Valley-3333/HoI4-Unit-Voice-Studio/releases)からインストーラをダウンロードして実行します。
